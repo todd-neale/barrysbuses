@@ -24,235 +24,426 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+
+  <style>
+    .modal-fullscreen-custom {
+      max-width: 100vw;
+      margin: 0;
+    }
+
+    .modal-fullscreen-custom .modal-content {
+      height: 100vh;
+      border: none;
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.95);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      z-index: 1055;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 10px 15px;
+      z-index: 1055;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .carousel-prev-modal {
+      left: 20px;
+    }
+
+    .carousel-next-modal {
+      right: 20px;
+    }
+  </style>
 </head>
-
 <body>
-  <div class="d-flex flex-column min-vh-100">
-    <div class="flex-grow-1">
-      <div class="container mt-5">
-        <div class="header">
-          <div class="header-logo">
-            <div class="flex-direction-column">
-              <h1>Barry's Buses Ltd</h1>
-              <p>Premium Film Crew & Movie Location Transport Services in London</p>
+<div class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <div class="toggle-slider">
+    <div class="toggle-circle"></div>
+  </div>
+</div>
+<div class="d-flex flex-column min-vh-100">
+  <div class="flex-grow-1">
+    <div class="container mt-5">
+      <div class="header">
+        <div class="flex-direction-column text-center">
+          <img src="img/logo.png" alt="Barry's Buses Ltd Logo" class="header-logo">
+          <p class="upcase mt-2">Premium Film & TV Transport Services in London</p>
+        </div>
+        <div class="sub-title d-flex justify-content-between align-items-center mt-2 contact-links">
+          <h5><a href="tel:+447377635614">+44 7377 635614</a></h5>
+          <h5><a href="mailto:office@barrysbuses.com">office@barrysbuses.com</a></h5>
+        </div>
+      </div>
+
+      <div class="page">
+        <!-- Photos Section -->
+        <section id="photos" class="pt-5 border-top-black">
+          <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/fleet-8.jpeg" class="d-block w-100" alt="Fleet Vehicle 8" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="0">
+              </div>
+              <div class="carousel-item">
+                <img src="img/film.avif" class="d-block w-100" alt="Film Production" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="1">
+              </div>
+              <div class="carousel-item">
+                <img src="img/film-crew.jpg" class="d-block w-100" alt="Film Crew Transport" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="2">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-2.jpeg" class="d-block w-100" alt="Fleet Vehicle 2" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="3">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-3.jpeg" class="d-block w-100" alt="Fleet Vehicle 3" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="4">
+              </div>
+              <div class="carousel-item">
+                <img src="img/film-crew-2.jpg" class="d-block w-100" alt="Film Crew Transport 2" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="5">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-4.jpeg" class="d-block w-100" alt="Fleet Vehicle 4" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="6">
+              </div>
+              <div class="carousel-item">
+                <img src="img/cotswolds2.jpg" class="d-block w-100" alt="Cotswolds Location 2" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="7">
+              </div>
+              <div class="carousel-item">
+                <img src="img/inside.jpg" class="d-block w-100" alt="Interior View" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="8">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-5.jpeg" class="d-block w-100" alt="Fleet Vehicle 5" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="9">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-6.jpeg" class="d-block w-100" alt="Fleet Vehicle 6" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="10">
+              </div>
+              <div class="carousel-item">
+                <img src="img/cameraman.avif" class="d-block w-100" alt="Cameraman at Work" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="11">
+              </div>
+              <div class="carousel-item">
+                <img src="img/cotswolds3.jpg" class="d-block w-100" alt="Cotswolds Location 3" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="12">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-7.jpeg" class="d-block w-100" alt="Fleet Vehicle 7" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="14">
+              </div>
+              <div class="carousel-item">
+                <img src="img/fleet-1.jpeg" class="d-block w-100" alt="Fleet Vehicle 1" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-index="15">
+              </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <div class="sub-title d-flex justify-content-between align-items-center mt-2 contact-links">
-            <h5><a href="tel:+447377635614">+44 7377 635614</a></h5>
-            <h5><a href="mailto:office@barrysbuses.com">office@barrysbuses.com</a></h5>
+        </section>
+
+        <!-- Image Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-fullscreen-custom">
+            <div class="modal-content">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>
+              </button>
+              <button class="carousel-nav-btn carousel-prev-modal" id="modalPrevBtn">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="carousel-nav-btn carousel-next-modal" id="modalNextBtn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+              <div class="image-counter" id="imageCounter">
+                <span id="currentImageNumber">1</span> / <span id="totalImages">16</span>
+              </div>
+              <div class="modal-body">
+                <img id="modalImage" src="" alt="" class="img-fluid">
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="page">
-          <!-- Photos Section -->
-          <section id="photos" class="pt-5 border-top-black">
-            <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="img/film.avif" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item ">
-                  <img src="img/film-crew.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/sprinter.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/film-crew-2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/cotswolds2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/inside.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/cotswolds3.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/cameraman.avif" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="img/videocamera.avif" class="d-block w-100" alt="...">
-                </div>
+        <!-- Events Section -->
+        <section>
+          <div class="d-flex justify-content-around align-items-center">
+            <div class="row">
+              <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
+                <p class="text-center"><i class="fas fa-users"></i></p>
+                <p class="text-center semi-bold">16 Passenger Capacity</p>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </section>
-
-          <!-- Events Section -->
-          <section>
-            <div class="d-flex justify-content-around align-items-center">
-              <div class="row">
-                <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
-                  <p class="text-center"><i class="fas fa-users"></i></p>
-                  <p class="text-center semi-bold">16 Passenger Capacity</p>
-                </div>
-                <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
-                  <p class="text-center"><i class="fas fa-snowflake"></i></p>
-                  <p class="text-center semi-bold">Air Conditioned</p>
-                </div>
-                <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
-                  <p class= "text-center"><i class="fas fa-certificate"></i></p>
-                  <p class="text-center semi-bold">Fully Licensed</p>
-                </div>
-                <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
-                  <p class= "text-center"><i class="fas fa-star"></i></p>
-                  <p class="text-center semi-bold">15+ Years Experience</p>
-                </div>
+              <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
+                <p class="text-center"><i class="fas fa-snowflake"></i></p>
+                <p class="text-center semi-bold">Air Conditioned</p>
+              </div>
+              <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
+                <p class= "text-center"><i class="fas fa-certificate"></i></p>
+                <p class="text-center semi-bold">Fully Licensed</p>
+              </div>
+              <div class="col-md-3 col-6 d-flex justify-content-around align-items-center">
+                <p class= "text-center"><i class="fas fa-star"></i></p>
+                <p class="text-center semi-bold">15+ Years Experience</p>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <!-- About Section -->
-          <section id="about" class="border-top-black">
-            <h2 class="mt-5">Film Crew & Movie Location Transport by Barry's Buses</h2>
-            <p>
-              At Barry's Buses Ltd., we're more than a transport provider – we're a trusted partner in your production process. Our dedication to service excellence and meticulous attention to detail make us the perfect choice for your next film or television project.
-            </p>
-            <h4 class="mt-5">Tailored Transport for Film Productions</h4>
-            <p>
-              <strong>Location Transport:</strong> Efficiently move cast, crew, and equipment between locations throughout London and the surrounding areas.<br><br>
+        <!-- About Section -->
+        <section id="about" class="border-top-black">
+          <h4 class="mt-5 upcase">Film & TV Transport by Barry's Buses</h4>
+          <p>
+            At Barry's Buses Ltd., we're more than a transport provider – we're a trusted partner in your production process. Our dedication to service excellence and meticulous attention to detail make us the perfect choice for your next film or television project.
+          </p>
+          <h6 class="mt-5 upcase">Tailored Transport for Film Productions</h6>
+          <p>
+            <strong>Location Transport:</strong> Efficiently move cast, crew, and equipment between locations throughout London and the surrounding areas.<br><br>
 
-              <strong>Airport and Hotel Transfers:</strong> Provide a smooth transition from arrival to set, ensuring your team is fresh and ready for action.<br><br>
+            <strong>Airport and Hotel Transfers:</strong> Provide a smooth transition from arrival to set, ensuring your team is fresh and ready for action.<br><br>
 
-              <strong>Flexible Scheduling:</strong> Whether it's early call times or late-night wraps, we accommodate your production's schedule with ease.<br><br>
-            </p>
-            <div class="map-container mt-3">
-              <div id="map"></div>
-            </div>
-            <h4 class="mt-5">Why Choose Barry's Buses for Film Transport?</h4>
-            <p>
-              <strong>Experience in Film & TV Logistics:</strong> We understand the unique demands of film and television production and offer transport solutions designed to meet the needs of cast, crew, and production teams across London and surrounding areas.<br><br>
+            <strong>Flexible Scheduling:</strong> Whether it's early call times or late-night wraps, we accommodate your production's schedule with ease.<br><br>
+          </p>
+          <div class="map-container mt-3">
+            <div id="map"></div>
+          </div>
+          <h6 class="mt-5 upcase">Why Choose Barry's Buses for Film Transport?</h6>
+          <p>
+            <strong>Experience in Film & TV Logistics:</strong> We understand the unique demands of film and television production and offer transport solutions designed to meet the needs of cast, crew, and production teams across London and surrounding areas.<br><br>
 
-              <strong>Comfort and Reliability:</strong> Our well-maintained fleet ensures a comfortable ride, whether you're travelling between locations or preparing for a long day on set.<br><br>
+            <strong>Comfort and Reliability:</strong> Our well-maintained fleet ensures a comfortable ride, whether you're travelling between locations or preparing for a long day on set.<br><br>
 
-              <strong>Punctual and Reliable Service:</strong> Timing is critical in production schedules. We pride ourselves on punctuality, ensuring everyone and everything arrives on time.<br><br>
+            <strong>Punctual and Reliable Service:</strong> Timing is critical in production schedules. We pride ourselves on punctuality, ensuring everyone and everything arrives on time.<br><br>
 
-              <strong>Professional Service:</strong> Our experienced drivers offer a courteous and professional service, ensuring the reliability and discretion required in the film and television industry.<br><br>
-            </p>
-            <p>
-              Filming in London and the surrounding areas offers incredible locations and dynamic backdrops, but navigating busy streets and tight schedules can be challenging. Barry's Buses Ltd.'s local expertise and reliable service ensure your production runs smoothly, no matter the demands of your shoot.
-            </p>
-          </section>
+            <strong>Professional Service:</strong> Our experienced drivers offer a courteous and professional service, ensuring the reliability and discretion required in the film and television industry.<br><br>
+          </p>
+          <p>
+            Filming in London and the surrounding areas offers incredible locations and dynamic backdrops, but navigating busy streets and tight schedules can be challenging. Barry's Buses Ltd.'s local expertise and reliable service ensure your production runs smoothly, no matter the demands of your shoot.
+          </p>
+        </section>
 
-          <section class="services pt-5 border-top-black">
-              <h2 class="section-title">Our Services</h2>
-              <div class="row g-4 mb-5">
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Film & TV Work</h3>
-                    <p>Professional transport solutions for film crews, cast, and equipment. Reliable service for productions of all sizes.</p>
-                  </div>
+        <section class="services pt-5 border-top-black">
+          <h4 class="section-title upcase">Our Services</h4>
+          <div class="row g-4 mb-5">
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-video"></i>
                 </div>
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Events & Festivals</h3>
-                    <p>Safe and comfortable group transport to concerts, festivals, and special events. Never miss the action!</p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-flag-checkered"></i>
-                    </div>
-                    <h3>Race Days</h3>
-                    <p>Premium transport to racing events. Arrive in style and comfort while avoiding parking hassles.</p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Weddings</h3>
-                    <p>Make your special day perfect with our elegant wedding transport services. Luxury and reliability guaranteed.</p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-route"></i>
-                    </div>
-                    <h3>Tours</h3>
-                    <p>Discover London and beyond with our tour services. Comfortable and tailored to your needs.</p>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-6">
-                  <div class="service-card">
-                    <div class="service-icon">
-                      <i class="fas fa-glass-cheers"></i>
-                    </div>
-                    <h3>Stag & Hen Do's</h3>
-                    <p>Celebrate in style! Safe, fun transport for your bachelor or bachelorette party adventures.</p>
-                  </div>
-                </div>
-              </div>
-          </section>
-
-
-          <!-- Contact Section -->
-          <section id="contact" class="border-top-black">
-            <h3 class="mt-3">Contact</h3>
-            <p>
-              For bookings and inquiries, please Call Barry or reach out to us via WhatsApp or Email.
-            </p>
-            <p>We look forward to hearing from you!</p>
-            <div class="d-flex justify-content-center align-items-center contact-links">
-              <div class="row">
-                <div class="col-12 d-flex justify-content-center align-items-baseline">
-                  <h5 class="me-3"><span class="mobile-none">Call</span> <a href="tel:+447377635614" class="phone">+44 7377 635614</a><span class="mobile-none"> or message via</span></h5>
-                  <a href="https://wa.me/447377635614" target="_blank" id="wa"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <div class="col-12 d-flex justify-content-center align-items-center">
-                  <h5 class="mt-3"><span class="mobile-none">or Email us at </span><a href="mailto:office@barrysbuses.com">office@barrysbuses.com</a></h5>
-                </div>
+                <h6 class="upcase">Film & TV Work</h6>
+                <p>Professional transport solutions for film crews, cast, and equipment. Reliable service for productions of all sizes.</p>
               </div>
             </div>
-          </section>
-        </div>
-      </div>
-    </div>
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h6 class="upcase">Events & Festivals</h6>
+                <p>Safe and comfortable group transport to concerts, festivals, and special events. Never miss the action!</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-flag-checkered"></i>
+                </div>
+                <h6 class="upcase">Race Days</h6>
+                <p>Premium transport to racing events. Arrive in style and comfort while avoiding parking hassles.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <h6 class="upcase">Weddings</h6>
+                <p>Make your special day perfect with our elegant wedding transport services. Luxury and reliability guaranteed.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-route"></i>
+                </div>
+                <h6 class="upcase">Tours</h6>
+                <p>Discover London and beyond with our tour services. Comfortable and tailored to your needs.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-6">
+              <div class="service-card">
+                <div class="service-icon">
+                  <i class="fas fa-glass-cheers"></i>
+                </div>
+                <h6 class="upcase">Stag & Hen Do's</h6>
+                <p>Celebrate in style! Safe, fun transport for your bachelor or bachelorette party adventures.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <div class="footer">
-      <p>&copy; 2025 Barry's Buses Ltd. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="mailto:office@barrysbuses.com" class="btn btn-custom-primary btn-lg">
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://wa.me/447377635614" target="_blank" id="wa"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <div class="footer-copyright">
-        <p>Design and development by <a href="https://www.toddneale.xyz" target="_blank">Todd Neale</a></p>
+
+        <!-- Contact Section -->
+        <section id="contact" class="border-top-black">
+          <h4 class="mt-3 upcase">Contact</h4>
+          <p>
+            For bookings and inquiries, please Call Barry or reach out to us via WhatsApp or Email.
+          </p>
+          <p>We look forward to hearing from you!</p>
+          <div class="d-flex justify-content-center align-items-center contact-links">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center align-items-baseline">
+                <h5 class="me-3"><span class="mobile-none">Call</span> <a href="tel:+447377635614" class="phone">+44 7377 635614</a><span class="mobile-none"> or message via</span></h5>
+                <a href="https://wa.me/447377635614" target="_blank" id="wa"><i class="fab fa-whatsapp"></i></a>
+              </div>
+              <div class="col-12 d-flex justify-content-center align-items-center">
+                <h5 class="mt-3"><span class="mobile-none">or Email us at </span><a href="mailto:office@barrysbuses.com">office@barrysbuses.com</a></h5>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
 
-  <script src="js/app.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-  <script>
-    var map = L.map('map').setView([51.5074, -0.1278], 10);
+  <div class="footer">
+    <p>&copy; 2025 Barry's Buses Ltd. All rights reserved.</p>
+    <div class="footer-links">
+      <img src="img/logo.png" alt="Barrys Buses Ltd Logo" class="footer-logo">
+    </div>
+    <div class="footer-copyright">
+      <p>Design and development by <a href="https://www.toddneale.xyz" target="_blank">Todd Neale</a></p>
+    </div>
+  </div>
+</div>
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+<script src="js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  // Theme Toggle Functionality
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
 
-    var marker = L.marker([51.5074, -0.1278]).addTo(map);
-    marker.bindPopup("<b>Barry's Buses Ltd.</b>");
-  </script>
+  // Check for saved theme preference or default to 'light'
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  body.setAttribute('data-theme', currentTheme);
+
+  // Theme toggle event listener
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+
+  // Leaflet Map
+  var map = L.map('map').setView([51.5074, -0.1278], 10);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var marker = L.marker([51.5074, -0.1278]).addTo(map);
+  marker.bindPopup("<b>Barry's Buses Ltd.</b>");
+
+  // Image Gallery Modal Functionality
+  const images = [
+    { src: 'img/fleet-8.jpeg', alt: 'Fleet Vehicle 8' },
+    { src: 'img/film.avif', alt: 'Film Production' },
+    { src: 'img/film-crew.jpg', alt: 'Film Crew Transport' },
+    { src: 'img/fleet-2.jpeg', alt: 'Fleet Vehicle 2' },
+    { src: 'img/fleet-3.jpeg', alt: 'Fleet Vehicle 3' },
+    { src: 'img/film-crew-2.jpg', alt: 'Film Crew Transport 2' },
+    { src: 'img/fleet-4.jpeg', alt: 'Fleet Vehicle 4' },
+    { src: 'img/cotswolds2.jpg', alt: 'Cotswolds Location 2' },
+    { src: 'img/inside.jpg', alt: 'Interior View' },
+    { src: 'img/fleet-5.jpeg', alt: 'Fleet Vehicle 5' },
+    { src: 'img/fleet-6.jpeg', alt: 'Fleet Vehicle 6' },
+    { src: 'img/cameraman.avif', alt: 'Cameraman at Work' },
+    { src: 'img/cotswolds3.jpg', alt: 'Cotswolds Location 3' },
+    { src: 'img/videocamera.avif', alt: 'Video Camera Equipment' },
+    { src: 'img/fleet-7.jpeg', alt: 'Fleet Vehicle 7' },
+    { src: 'img/fleet-1.jpeg', alt: 'Fleet Vehicle 1' }
+  ];
+
+  let currentImageIndex = 0;
+  const modalImage = document.getElementById('modalImage');
+  const currentImageNumber = document.getElementById('currentImageNumber');
+  const totalImages = document.getElementById('totalImages');
+  const modalPrevBtn = document.getElementById('modalPrevBtn');
+  const modalNextBtn = document.getElementById('modalNextBtn');
+
+  // Set total images count
+  totalImages.textContent = images.length;
+
+  function updateModalImage(index) {
+    if (index >= 0 && index < images.length) {
+      currentImageIndex = index;
+      modalImage.src = images[index].src;
+      modalImage.alt = images[index].alt;
+      currentImageNumber.textContent = index + 1;
+    }
+  }
+
+  // Handle carousel image clicks
+  document.querySelectorAll('[data-image-index]').forEach(img => {
+    img.addEventListener('click', function() {
+      const index = parseInt(this.getAttribute('data-image-index'));
+      updateModalImage(index);
+    });
+  });
+
+  // Handle modal navigation
+  modalPrevBtn.addEventListener('click', function() {
+    const newIndex = currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
+    updateModalImage(newIndex);
+  });
+
+  modalNextBtn.addEventListener('click', function() {
+    const newIndex = currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
+    updateModalImage(newIndex);
+  });
+
+  // Handle keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('imageModal');
+    const isModalOpen = modal.classList.contains('show');
+
+    if (isModalOpen) {
+      if (e.key === 'ArrowLeft') {
+        modalPrevBtn.click();
+      } else if (e.key === 'ArrowRight') {
+        modalNextBtn.click();
+      } else if (e.key === 'Escape') {
+        bootstrap.Modal.getInstance(modal).hide();
+      }
+    }
+  });
+
+  // Prevent modal from closing when clicking on the image
+  modalImage.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+</script>
 </body>
 </html>
