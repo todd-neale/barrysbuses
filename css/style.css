@@ -13,7 +13,7 @@
 }
 
 [data-theme="dark"] {
-  --bg-color: #1a1a1a;
+  --bg-color: #000;
   --text-color: #e0e0e0;
   --border-color: #fff;
   --footer-bg: #000000;
@@ -294,6 +294,7 @@ section {
   font-size: 0.8em;
   line-height: 1.6;
   margin: 0;
+  color: var(--footer-text);
 }
 
 .footer-links a:hover {
